@@ -8,9 +8,26 @@
   "engines": {
     "vscode": "^1.7.0"
   },
+  "license": "MIT",
   "categories": [
+    "Languages",
     "Other"
   ],
+  "keywords": [
+    "babel",
+    "javascript",
+    "es6",
+    "repl",
+    "transpiler"
+  ],
+  "icon": "icon.png",
+  "bugs": {
+      "url": "https://github.com/t-sauer/vscode-babel-repl/issues"
+  },
+  "repository": {
+      "type": "git",
+      "url": "https://github.com/t-sauer/vscode-babel-repl.git"
+  },
   "activationEvents": [
     "onCommand:extension.newRepl"
   ],

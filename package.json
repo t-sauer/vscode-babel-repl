@@ -13,6 +13,10 @@
     "Languages",
     "Other"
   ],
+  "galleryBanner": {
+      "color": "#f6db47",
+      "theme": "dark"
+  },
   "keywords": [
     "babel",
     "javascript",

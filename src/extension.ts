@@ -64,18 +64,16 @@ class Repl {
             outputEditor
         } = await this.showTextDocuments(inputTextDocument, outputTextDocument);
 
-        const changeEvent = workspace.onDidChangeTextDocument((event) => {
+        this.changeEventDisposable = workspace.onDidChangeTextDocument((event) => {
             if (event.document !== inputTextDocument) {
                 return;
             }
 
-            const code = event.document.getText();
+            const code = inputTextDocument.getText();
             const transformedCode = babel.transform(code, babelOptions);
 
             fs.writeFileSync(outputFilePath, transformedCode.code);
         });
-
-        this.changeEventDisposable = changeEvent;
     }
 
     private async openTextDocuments(inputFilePath: string, outputFilePath: string) {
@@ -90,7 +88,7 @@ class Repl {
 
     private showTextDocuments(inputTextDocument: TextDocument, outputTextDocument: TextDocument) {
         const inputPromise = window.showTextDocument(inputTextDocument, ViewColumn.One);
-        const outputPromise = window.showTextDocument(outputTextDocument, ViewColumn.Two);
+        const outputPromise = window.showTextDocument(outputTextDocument, ViewColumn.Two, true);
         const promises = [inputPromise, outputPromise];
 
         return Promise.all(promises)

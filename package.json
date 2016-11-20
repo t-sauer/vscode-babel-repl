@@ -1,9 +1,10 @@
 {
   "name": "vscode-babel-repl",
-  "displayName": "vscode-babel-repl",
+  "displayName": "Babel REPL",
   "description": "Write next generation Javascript and see the transpiled output.",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "publisher": "t-sauer",
+  "preview": true,
   "engines": {
     "vscode": "^1.7.0"
   },

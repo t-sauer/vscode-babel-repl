@@ -3,6 +3,8 @@ import * as os from 'os';
 import * as fs from 'fs';
 import * as path from 'path';
 import * as crypto from 'crypto';
+import * as nodeRepl from 'repl';
+import * as stream from 'stream';
 
 import {
     commands,
@@ -64,15 +66,36 @@ class Repl {
             outputEditor
         } = await this.showTextDocuments(inputTextDocument, outputTextDocument);
 
+        const outputChannel = window.createOutputChannel('Babel REPL');
+        outputChannel.show(true);
+
         this.changeEventDisposable = workspace.onDidChangeTextDocument((event) => {
             if (event.document !== inputTextDocument) {
                 return;
             }
 
+            outputChannel.show(true);
+
             const code = inputTextDocument.getText();
             const transformedCode = babel.transform(code, babelOptions);
-
             fs.writeFileSync(outputFilePath, transformedCode.code);
+
+            const inputStream = new stream.Readable();
+            inputStream.push(transformedCode.code);
+            inputStream.push(null);
+
+            const outputStream = new stream.Writable({
+                write(chunk, encoding, next) {
+                    outputChannel.append(chunk.toString());
+                    next();
+                }
+            });
+
+            outputChannel.clear();
+            nodeRepl.start({
+                input: inputStream,
+                output: outputStream
+            });
         });
     }
 

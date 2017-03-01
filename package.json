@@ -14,8 +14,8 @@
     "Other"
   ],
   "galleryBanner": {
-      "color": "#f6db47",
-      "theme": "light"
+    "color": "#f6db47",
+    "theme": "light"
   },
   "keywords": [
     "babel",
@@ -26,11 +26,11 @@
   ],
   "icon": "icon.png",
   "bugs": {
-      "url": "https://github.com/t-sauer/vscode-babel-repl/issues"
+    "url": "https://github.com/t-sauer/vscode-babel-repl/issues"
   },
   "repository": {
-      "type": "git",
-      "url": "https://github.com/t-sauer/vscode-babel-repl.git"
+    "type": "git",
+    "url": "https://github.com/t-sauer/vscode-babel-repl.git"
   },
   "activationEvents": [
     "onCommand:extension.newRepl"
@@ -58,6 +58,7 @@
   },
   "dependencies": {
     "babel-core": "^6.18.2",
-    "babel-preset-latest": "^6.16.0"
+    "babel-preset-latest": "^6.16.0",
+    "mkdirp": "^0.5.1"
   }
 }

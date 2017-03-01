@@ -17,7 +17,8 @@ import {
     workspace
 } from 'vscode';
 
-import * as babel from 'babel-core';
+const babel = require('babel-core');
+const mkdirp = require('mkdirp');
 
 const tmpFolder = os.tmpdir();
 let repl: Repl;
@@ -36,7 +37,7 @@ export function deactivate() {
 }
 
 
-const babelOptions: babel.TransformOptions = {
+const babelOptions = {
     presets: [path.join(__dirname, '../../node_modules/babel-preset-latest')]
 };
 
@@ -123,7 +124,7 @@ class Repl {
         const basePath = path.join(tmpFolder, 'vscode-babel-repl', random);
 
         if (!fs.existsSync(basePath)) {
-            fs.mkdirSync(basePath);
+            mkdirp.sync(basePath);
         }
 
         return basePath;

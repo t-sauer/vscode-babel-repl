@@ -16,6 +16,10 @@ If you have any problems please open a issue on Github.
 
 ## Release Notes
 
+### 0.1.2
+
+* Fixed creation of temporary files
+
 ### 0.1.0
 
-Initial release
+* Initial release
